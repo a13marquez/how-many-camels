@@ -4,6 +4,7 @@
   "description": "\"",
   "main": "index.js",
   "scripts": {
+    "dev": "parcel src/index.html",
     "test": "jest"
   },
   "repository": {
@@ -18,7 +19,8 @@
   "homepage": "https://github.com/a13marquez/how-many-camels#readme",
   "dependencies": {
     "bulma": "^0.7.5",
-    "react": "^16.9.0"
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "devDependencies": {
     "parcel-bundler": "^1.12.3"
