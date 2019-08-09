@@ -1,5 +1,6 @@
 import React from 'react';
 import 'bulma/css/bulma.css'
+import '../app.scss';
 
 import { Header } from './header';
 import { Game } from './game';
