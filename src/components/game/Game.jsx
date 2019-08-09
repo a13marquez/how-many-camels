@@ -6,22 +6,27 @@ import { Slider } from '../slider';
 import { ButtonGroup } from '../button-group';
 import { Select } from '../select';
 import { RadioGroup } from '../radio-group';
+import { calculatePoints } from '../../common/calculateCamels';
 
 export class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      minAge: 18,
-      minHeight: 140,
       age: 18,
       height: 140,
       hairColor: 'blonde',
       hairLength: 'long',
-      eyeColor: 'blue'
+      eyeColor: 'blue',
+      beardType: 'shaved',
+      bodyType: 'strong'
     }
+    this.minAge =  18;
+    this.minHeight = 140;
     this.hairColorOptions = ['blonde', 'brown', 'black', 'red', 'grey'];
     this.hairLengthOptions = ['long', 'middle', 'short', 'bald'];
-    this.eyecolorOptions = ['blue', 'green', 'brown', 'grey']
+    this.eyecolorOptions = ['blue', 'green', 'brown', 'grey'];
+    this.beardType = ['shaved', 'moustache', 'goatee', 'full'];
+    this.bodyType = ['strong', 'skinny', 'fat']
     this.onUpdateAge = this.onUpdateAge.bind(this);
     this.onUpdateHeight = this.onUpdateHeight.bind(this);
     this.onUpdateHairColor = this.onUpdateHairColor.bind(this);
@@ -48,21 +53,21 @@ export class Game extends React.Component {
   calculate() {
     const { handleCalculate } = this.props
     this.props.history.push('/result');
-    handleCalculate(25)
+    const camels = calculatePoints(this.state)
+    handleCalculate(camels)
   }
 
   render() {
-    const { minAge, minHeight } = this.state
     return(
       <React.Fragment>
         <Header title="How Many Camels for your boyfriend?"></Header>
         <div className="section">
           <Slider label="Age" 
-                  min={minAge} max={100} step={1}
+                  min={this.minAge} max={100} step={1}
                   handleChange={this.onUpdateAge}>
           </Slider>
           <Slider label="Height(cm)" 
-                  min={minHeight} max={210} step={1}
+                  min={this.minHeight} max={210} step={1}
                   handleChange={this.onUpdateHeight}>      
           </Slider>
           <Select label="Hair color" 
@@ -80,12 +85,12 @@ export class Game extends React.Component {
           </RadioGroup>
           <ButtonGroup label="Beard"
                        name="hairlength"
-                       options={this.hairLengthOptions}
+                       options={this.beardType}
                        handleChange={this.onUpdateHairLength}>
           </ButtonGroup>
           <ButtonGroup label="Body"
                        name="hairlength"
-                       options={this.hairLengthOptions}
+                       options={this.bodyType}
                        handleChange={this.onUpdateHairLength}>
           </ButtonGroup>
           <button onClick={this.calculate} className="button is-link">CALCULATE</button>
