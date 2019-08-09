@@ -1,0 +1,11 @@
+@import './styles/bulma-social.min.scss';
+
+#root {
+  display: flex;
+  visibility: hidden;
+}
+
+.hidden {
+  display: none;
+}
+

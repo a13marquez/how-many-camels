@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>How Many Camels?</title>
+    <meta charset="utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="full-screen" content="yes"/>
+    <meta name="screen-orientation" content="portrait"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+<body>
+  <div  id="root"></div>
+  <script src="https://connect.facebook.net/en_US/fbinstant.6.2.js"></script>
+  
+  <script type="text/javascript">
+    window.onload = function() {
+      debugger
+      FBInstant.initializeAsync().then(function() {
+        debugger;
+        FBInstant.startGameAsync().then(onStart);
+      });
+    };
+
+    function onStart() {
+      document.querySelector('#root').style.visibility = 'visible';
+    }
+  </script>
+<script src="./src/index.jsx"></script>
+  
+</body>
+</html>

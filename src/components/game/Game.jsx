@@ -1,4 +1,7 @@
 import React from 'react';
+
+
+import { Header } from '../header';
 import { Slider } from '../slider';
 import { ButtonGroup } from '../button-group';
 import { Select } from '../select';
@@ -24,6 +27,7 @@ export class Game extends React.Component {
     this.onUpdateHairColor = this.onUpdateHairColor.bind(this);
     this.onUpdateHairLength = this.onUpdateHairLength.bind(this);
     this.onUpdateEyeColor = this.onUpdateEyeColor.bind(this);
+    this.calculate = this.calculate.bind(this);
   }
 
   onUpdateAge(age) {
@@ -41,44 +45,52 @@ export class Game extends React.Component {
   onUpdateEyeColor(color) {
     this.setState({ eyecolor: color});
   }
+  calculate() {
+    const { handleCalculate } = this.props
+    this.props.history.push('/result');
+    handleCalculate(25)
+  }
 
   render() {
     const { minAge, minHeight } = this.state
     return(
-      <div className="section">
-        <Slider label="Age" 
-                min={minAge} max={100} step={1}
-                handleChange={this.onUpdateAge}>
-        </Slider>
-        <Slider label="Height(cm)" 
-                min={minHeight} max={210} step={1}
-                handleChange={this.onUpdateHeight}>      
-        </Slider>
-        <Select label="Hair color" 
-                options={this.hairColorOptions}
-                handleChange={this.onUpdateHairColor}>    
-        </Select>
-        <ButtonGroup label="Hair length"
-                     name="hairlength"
-                     options={this.hairLengthOptions}
-                     handleChange={this.onUpdateHairLength}>
-        </ButtonGroup>
-        <RadioGroup label="Eyecolor" 
-                    options={this.eyecolorOptions}
-                    handleChange={this.onUpdateEyeColor}>
-        </RadioGroup>
-        <ButtonGroup label="Beard"
-                     name="hairlength"
-                     options={this.hairLengthOptions}
-                     handleChange={this.onUpdateHairLength}>
-        </ButtonGroup>
-        <ButtonGroup label="Body"
-                     name="hairlength"
-                     options={this.hairLengthOptions}
-                     handleChange={this.onUpdateHairLength}>
-        </ButtonGroup>
-        <button className="button is-link">CALCULATE</button>
-      </div>
+      <React.Fragment>
+        <Header title="How Many Camels for your boyfriend?"></Header>
+        <div className="section">
+          <Slider label="Age" 
+                  min={minAge} max={100} step={1}
+                  handleChange={this.onUpdateAge}>
+          </Slider>
+          <Slider label="Height(cm)" 
+                  min={minHeight} max={210} step={1}
+                  handleChange={this.onUpdateHeight}>      
+          </Slider>
+          <Select label="Hair color" 
+                  options={this.hairColorOptions}
+                  handleChange={this.onUpdateHairColor}>    
+          </Select>
+          <ButtonGroup label="Hair length"
+                       name="hairlength"
+                       options={this.hairLengthOptions}
+                       handleChange={this.onUpdateHairLength}>
+          </ButtonGroup>
+          <RadioGroup label="Eyecolor" 
+                      options={this.eyecolorOptions}
+                      handleChange={this.onUpdateEyeColor}>
+          </RadioGroup>
+          <ButtonGroup label="Beard"
+                       name="hairlength"
+                       options={this.hairLengthOptions}
+                       handleChange={this.onUpdateHairLength}>
+          </ButtonGroup>
+          <ButtonGroup label="Body"
+                       name="hairlength"
+                       options={this.hairLengthOptions}
+                       handleChange={this.onUpdateHairLength}>
+          </ButtonGroup>
+          <button onClick={this.calculate} className="button is-link">CALCULATE</button>
+        </div>
+      </React.Fragment>
     )
   }
 }
