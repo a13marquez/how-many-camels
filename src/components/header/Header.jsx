@@ -9,6 +9,6 @@ export const Header = ({ title }) => (
   </section>
 )
 
-Header.PropTypes = {
+Header.propTypes = {
   title: PropTypes.string.isRequired
 }
